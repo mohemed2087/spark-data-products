@@ -1,20 +1,20 @@
 package com.mohek.dp
 
-import org.apache.spark.sql.types.{DataTypes, IntegerType, StringType, StructField, StructType}
+import org.apache.spark.sql.types.{DataTypes, DoubleType, IntegerType, LongType, StringType, StructField, StructType}
 
 package object streaming {
 
-  val studentSchema= StructType(Array(
-    StructField("id",IntegerType),
-    StructField("name",StringType),
-    StructField("age",IntegerType)
+  val studentSchema = StructType(Array(
+    StructField("id", IntegerType),
+    StructField("name", StringType),
+    StructField("age", IntegerType)
   ))
 
-  val empSchema=StructType(Array(
-    StructField("id",IntegerType),
-    StructField("name",StringType),
-    StructField("dep_id",IntegerType),
-    StructField("salary",IntegerType)
+  val empSchema = StructType(Array(
+    StructField("id", IntegerType),
+    StructField("name", StringType),
+    StructField("dep_id", IntegerType),
+    StructField("salary", IntegerType)
   ))
 
   val empStruct = new StructType()
@@ -27,14 +27,23 @@ package object streaming {
     .add("timestamp", DataTypes.TimestampType)
     .add("word", DataTypes.StringType)
 
-  case class emp(id : Int, name : String, dep_id: Int, salary: Int)
+  case class emp(id: Int, name: String, dep_id: Int, salary: Int)
 
   case class UserStatus(userId: String, active: Boolean)
+
   case class UserAction(userId: String, action: String)
 
-}
-trait Streamer{
+  val loan = new StructType()
+    .add("loan_id", DataTypes.LongType)
+    .add("funded_amnt", DataTypes.IntegerType)
+    .add("paid_amnt", DataTypes.DoubleType)
+    .add("addr_state", DataTypes.StringType)
+    .add("status", DataTypes.StringType)
 
-  def run()
+  trait Streamer {
+
+    def run()
+
+  }
 
 }

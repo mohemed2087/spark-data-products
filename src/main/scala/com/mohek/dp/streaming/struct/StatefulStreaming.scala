@@ -1,6 +1,6 @@
 package com.mohek.dp.streaming.struct
 
-import com.mohek.dp.Streamer
+import com.mohek.dp.streaming.Streamer
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.sql.functions._
 import com.mohek.dp.streaming._
@@ -49,7 +49,7 @@ class StatefulStreaming extends Streamer{
       UserStatus(userId, false)
     }
     newActions.foreach { action =>
-      userStatus.updateWith(action)
+    //  userStatus.updateWith(action)
     }
     state.update(userStatus)
     return userStatus
